@@ -10,9 +10,12 @@ import SendIcon from "@mui/icons-material/Send";
 import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
 import ThumbUpAltIcon from "@mui/icons-material/ThumbUpAlt";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import { useSelector } from "react-redux";
 
 function Home() {
   const [like, setLike] = useState(false);
+
+  const userInfo = useSelector((state) => state.user);
 
   const handleLike = () => {
     setLike((prev) => !prev);
@@ -26,7 +29,9 @@ function Home() {
           <img className={classes.backgroundImage} src={Background} alt="" />
           <img className={classes.profileImage} src={Avatar} alt="" />
           <div className={classes.textContainer}>
-            <div className={classes.username}>USERNAME</div>
+            <div className={classes.username}>
+              {userInfo && userInfo.user ? userInfo.user.username : "Your Name"}
+            </div>
             <div className={classes.info}>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere
               repudiandae quis pariatur quisqua
